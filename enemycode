@@ -1,0 +1,28 @@
+Here is the code of the enemy trying to catch the buddy.
+-------------------------------------------------------------
+using UnityEngine;
+using System.Collections;
+
+public class enemycontroll : MonoBehaviour {
+
+    // Use this for initialization
+    public Transform target;
+    public float moveSpeed = 3;
+
+    void Start()
+    {
+        target = GameObject.Find("snake").transform;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        Chase();
+    }
+    void Chase()
+    {
+        Vector3 vectorToTarget = target.position - transform.position;
+        transform.position += vectorToTarget.normalized * moveSpeed * Time.deltaTime;
+        transform.localScale += new Vector3(0.01F, 0.1F, 0);
+    }
+}
