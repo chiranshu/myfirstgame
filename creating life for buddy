@@ -1,0 +1,39 @@
+using UnityEngine;
+using System.Collections;
+
+public class SpawnFood : MonoBehaviour
+{
+    // Food Prefab
+    public GameObject FoodPrefab;
+
+    // Borders
+    public Transform top;
+    public Transform bottom;
+    public Transform left;
+    public Transform right;
+
+    // Use this for initialization
+    void Start()
+    {
+        // Spawn food every 4 seconds, starting in 3
+        InvokeRepeating("Spawn", 3,4);
+    }
+
+    // Spawn one piece of food
+    void Spawn()
+    {
+        // x position between left & right border
+        int x = (int)Random.Range(left.position.x,
+                                  right.position.x);
+
+        // y position between top & bottom border
+        int y = (int)Random.Range(bottom.position.y,
+                                  top.position.y);
+
+        // Instantiate the food at (x, y)
+        Instantiate(FoodPrefab,
+                    new Vector2(x, y),
+                    Quaternion.identity); // default rotation
+    }
+    
+}
